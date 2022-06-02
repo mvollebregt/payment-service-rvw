@@ -8,7 +8,7 @@ var amqp = require('amqplib/callback_api');
 const queuePaymentRequest = 'paymentRequest';
 const queuePaymentResponse = 'paymentResponse';
 
-amqp.connect('amqp://52.29.86.167', function(error0, connection) {
+amqp.connect('amqp://3.74.41.198', function(error0, connection) {
   if (error0) {
     throw error0;
   }
@@ -16,7 +16,7 @@ amqp.connect('amqp://52.29.86.167', function(error0, connection) {
     if (error1) {
       throw error1;
     }
-    
+
     channel.assertQueue(queuePaymentRequest, { durable: true });
     channel.assertQueue(queuePaymentResponse, {durable: true });
 
@@ -30,7 +30,7 @@ amqp.connect('amqp://52.29.86.167', function(error0, connection) {
 
       channel.sendToQueue(queuePaymentResponse, Buffer.from(outputMessage));
       console.log(" [x] Sent payment response %s", outputMessage);
-  
+
     }, {
         noAck: true
     });
